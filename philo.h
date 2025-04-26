@@ -8,14 +8,15 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <limits.h>
+#include <stdbool.h>
 
 typedef  pthread_mutex_t t_mtx;
 
 typedef struct s_fork
 {
     t_mtx   fork;
-    int     fork_id;
-}t_fork;
+    // int     fork_id;
+}   t_fork;
 
 typedef struct s_philo
 {
@@ -41,4 +42,9 @@ typedef struct s_table
     t_fork  *forks;
     t_philo *philos;
 }t_table;
+
+
+void    parsing_input(t_table *table, char **argv);
+bool    datat_init(t_table *table);
+bool    dinner_start(t_table *table);
 #endif
