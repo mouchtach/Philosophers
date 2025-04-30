@@ -29,6 +29,12 @@ typedef struct s_philo
     pthread_t    thread_id;
 }t_philo;
 
+typedef struct s_mutx
+{
+    t_mtx print;
+    t_mtx end;
+    t_mtx eat_c;
+}   t_mutx;
 
 typedef struct s_table
 {
@@ -40,6 +46,7 @@ typedef struct s_table
     long    start_simulation;
     bool    end_simulation;
     t_fork  *forks;
+    t_mutx  mtx;
     t_philo *philos;
 }t_table;
 

@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:07:54 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/04/26 17:04:14 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/04/30 16:33:24 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,16 @@ bool    datat_init(t_table *table)
     int i = 0;
     while(i < table->philo_number)
     {
-        table->philos->id = i + 1;
-        table->philos->full = false;
+        table->philos[i].id = i + 1;
+        table->philos[i].full = false;
         if(i == 0)
-            table->philos->right_fork = table->philo_number - 1;
+            table->philos[i].right_fork = table->philo_number - 1;
         else
-            table->philos->right_fork = i;
-        table->philos->left_fork = i - 1;
-        table->philos->meals_counter = 0;
+            table->philos[i].right_fork = i;
+        table->philos[i].left_fork = i - 1;
+        table->philos[i].meals_counter = 0;
         i++;
     }
-    // if(!set_table(table))
-    //     return(false);
+    table->end_simulation = false;
     return (true);
 }
