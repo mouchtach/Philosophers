@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 16:46:35 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/05/01 10:11:32 by ymouchta         ###   ########.fr       */
+/*   Created: 2025/05/01 10:33:26 by ymouchta          #+#    #+#             */
+/*   Updated: 2025/05/01 11:23:42 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-int main(int argc, char **argv)
+
+int main(int ac, char **av)
 {
     t_table table;
+    
+    if(ac == 5 || 6 == ac)
+    {
+        if(!parssing(&table, av))
+            return (1);
+        if(!table_init(&table))
+            return (1);
 
-    if(argc == 5 |  argc == 6)
-    {
-        parsing_input(&table, argv);
-        if(!data_init(&table))
-            return(1);
-        dinner_start(&table);
-        clean_table(&table);
     }
-    else
-    {
-        printf("error\n");
-        return(1);
-    }
-    return (0);
+
+
 }

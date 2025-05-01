@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 16:53:49 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/04/30 17:29:42 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/05/01 10:30:02 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,28 @@ void   *checking(void *u)
     table = (t_table *)u;
     while(i < table->philo_number)
     {
-        pthread_mutex_lock(&table->mtx.eat_c);
+        pthread_mutex_lock(&table->mtx.m_eat_c);
         if(get_time() - table->philos[i].last_meal_time >= table->time_to_die)
         {
-            pthread_mutex_unlock(&table->mtx.eat_c);
+            pthread_mutex_unlock(&table->mtx.m_eat_c);
             print_philo("died", &table->philos[i]);
-            pthread_mutex_lock(&table->mtx.end);
+            pthread_mutex_lock(&table->mtx.m_end);
             table->end_simulation = true; 
-            pthread_mutex_unlock(&table->mtx.end);
+            pthread_mutex_unlock(&table->mtx.m_end);
             break;
         }
-        pthread_mutex_unlock(&table->mtx.eat_c);
+        pthread_mutex_unlock(&table->mtx.m_eat_c);
         i++;
     }
     i = 0;
     while(i < table->philo_number)
     {
-        if()
+        if(table->philos[i].meals_counter == table->nbr_limit_meals)
+        {
+            pthread_mutex_lock(&table->mtx.m_full);
+            table->philos[i].full = true;
+            pthread_mutex_unlock(&table->mtx.m_full);
+        }
     }
     
     return;

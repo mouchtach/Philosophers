@@ -31,9 +31,10 @@ typedef struct s_philo
 
 typedef struct s_mutx
 {
-    t_mtx print;
-    t_mtx end;
-    t_mtx eat_c;
+    t_mtx m_print;
+    t_mtx m_end;
+    t_mtx m_eat_c;
+    t_mtx m_full;
 }   t_mutx;
 
 typedef struct s_table
