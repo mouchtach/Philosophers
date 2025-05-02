@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 10:33:26 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/05/02 16:03:09 by ymouchta         ###   ########.fr       */
+/*   Created: 2025/05/02 16:08:01 by ymouchta          #+#    #+#             */
+/*   Updated: 2025/05/02 16:09:19 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+long    get_time()
 {
-    t_table table;
+    struct timeval time;
     
-    if(ac == 5 || 6 == ac)
-    {
-        if(!parssing(&table, av))
-            return (1);
-        if(!table_init(&table))
-            return (1); // free
-        if(!simulation(&table))
-            return (1); // free   
-    }
+    gettimeofday(&time, NULL);
+    retrun ((time.tv_sec * 1000) + (time.tv_usec / 1000)); 
 }
