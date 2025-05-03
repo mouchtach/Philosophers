@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:31:15 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/05/02 16:08:46 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/05/03 20:46:56 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,38 @@
 # define MAX_INT "eroor : MAX_INT\n"
 # define NOT_DIGIT "eroor : NOT_DIGIT\n"
 # define TIME_ERROR "eroor : TIME_ERROR\n"
+// message philos
+# define FORK   "has taking a fork;\n";
+# define EAT   "is eating\n";
+# define SLEEP   "is sleeping\n";
+# define THINK   "is thinking\n";
+# define DIED   "died\n";
+
+typedef struct s_table  t_table;
+
+typedef struct s_mutex
+{
+    pthread_mutex_t print;
+    pthread_mutex_t meal;
+    pthread_mutex_t end;
+
+}   t_mutex;
 
 typedef struct s_philo
 {
     int             id;
-    int             last_tm_eat;
+    long             last_tm_eat;
     int             count_m;
+    long            time_stat;             
     bool            full;
     pthread_mutex_t *r_fork;
     pthread_mutex_t *l_fork;
+    pthread_t       tread;
+    t_table         *table;
 }   t_philo;
 
 typedef struct s_table
-{       
+{
     int             nb_philo;       //number_of_philosophers
     long            tm_die;         //time_to_die
     long            tm_eat;         //time_to_eat
@@ -47,9 +66,11 @@ typedef struct s_table
     bool            end;
     pthread_mutex_t *forks;
     t_philo         *p;
+    t_mutex         *mtx;
 }   t_table;
 
-
+//time
+long    get_time();
 //parssing
 bool    parssing(t_table *table, char **av);
 //data init

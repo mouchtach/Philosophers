@@ -11,6 +11,7 @@
         "vector": "c",
         "sstream": "c",
         "stdbool.h": "c",
-        "philo.h": "c"
+        "philo.h": "c",
+        "iterator": "c"
     }
 }
