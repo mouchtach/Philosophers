@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:31:15 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/05/03 20:46:56 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:16:49 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_philo
     int             id;
     long             last_tm_eat;
     int             count_m;
-    long            time_stat;             
+    long            time_stat;
     bool            full;
     pthread_mutex_t *r_fork;
     pthread_mutex_t *l_fork;
@@ -77,4 +77,11 @@ bool    parssing(t_table *table, char **av);
 bool    table_init(t_table *table);
 //simulation
 bool    simulation(t_table *table);
+bool	check_if_die(t_table *table);
+
+//utils
+void	print_t(t_philo *philo, char *str);
+bool	die(t_table *table);
+void	smart_sleep(long time);
+bool	check_if_die(t_table *table);
 #endif

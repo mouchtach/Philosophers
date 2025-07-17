@@ -1,4 +1,29 @@
-SRC = data_init.c parssing.c philo.c simulation.c time.c 
+NAME = philo
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -pthread
 
-all : $(SRC)
-	gcc -Wall -Wextra -Werror -pthread -o philo $(SRC) -lpthread
+SRCS = philo.c \
+		utils.c \
+		time.c \
+		simulation.c \
+		parssing.c \
+		data_init.c \
+
+OBJS = $(SRCS:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+
+%o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+.PHONY: all clean fclean re
