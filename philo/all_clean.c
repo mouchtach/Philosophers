@@ -6,11 +6,11 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:15:29 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/17 21:36:47 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/17 21:53:25 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.c"
+#include "philo.h"
 
 void	cleaned(t_table *table)
 {
