@@ -8,6 +8,7 @@ SRCS = philo.c \
 		simulation.c \
 		parssing.c \
 		data_init.c \
+		all_clean.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:31:15 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/17 10:30:43 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/17 21:36:55 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,10 @@ void	print_t(t_philo *philo, char *str);
 bool	die(t_table *table);
 void	smart_sleep(long time);
 bool	check_if_die(t_table *table);
+
+//leaks
+void	free_forks(t_table *table);
+void	cleaned(t_table *tabl);
+void	free_mutex(t_table *table);
+
 #endif

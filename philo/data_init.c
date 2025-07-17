@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:24:33 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/17 10:22:48 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/17 21:21:06 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	aloccated_forks(t_table *table)
 	while (i < table->nb_philo)
 	{
 		if (pthread_mutex_init(&table->forks[i], NULL))
-			return (false);
+			return (free(table->forks), false);
 		i++;
 	}
 	return (true);
@@ -66,7 +66,7 @@ bool	table_init(t_table *table)
 		return (false);
 	table->p = malloc(sizeof(t_philo) * table->nb_philo);
 	if (!table->p)
-		return (false);
+		return (free_forks(table), false);
 	while (i < table->nb_philo)
 	{
 		table->p[i].id = i + 1;
@@ -80,6 +80,6 @@ bool	table_init(t_table *table)
 	}
 	table->end = false;
 	if (!mutex_init(table))
-		return (false);
+		return (free(table->p), free_forks(table), false);
 	return (true);
 }
