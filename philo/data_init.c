@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:24:33 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/17 09:36:22 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:22:48 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,6 @@ bool	table_init(t_table *table)
 	{
 		table->p[i].id = i + 1;
 		fork_init(i, table);
-		// if(i == 0)
-		//     table->p[i].r_fork = &table->forks[table->nb_philo - 1];
-		// else
-		//     table->p[i].r_fork = &table->forks[i];
-		// table->p[i].l_fork = &table->forks[i - 1];
 		table->p[i].count_m = 0;
 		table->p[i].full = false;
 		table->p[i].table = table;
