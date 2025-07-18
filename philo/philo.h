@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:31:15 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/17 21:36:55 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:27:33 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ bool	check_if_die(t_table *table);
 //utils
 void	print_t(t_philo *philo, char *str);
 bool	die(t_table *table);
-void	smart_sleep(long time);
+void	smart_sleep(long time, t_table *table);
 bool	check_if_die(t_table *table);
 
 //leaks

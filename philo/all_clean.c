@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:15:29 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/17 21:53:25 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:27:21 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cleaned(t_table *table)
 {
-	if(table->p)
+	if (table->p)
 	{
 		free(table->p);
 	}
@@ -45,4 +45,3 @@ void	free_mutex(t_table *table)
 	pthread_mutex_destroy(&table->mtx->print);
 	pthread_mutex_destroy(&table->mtx->meal);
 }
-

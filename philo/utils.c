@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 10:14:52 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/17 10:31:03 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/18 15:47:01 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	die(t_table *table)
 	return (false);
 }
 
-void	smart_sleep(long time)
+void	smart_sleep(long time, t_table *table)
 {
 	long	start;
 
@@ -36,6 +36,8 @@ void	smart_sleep(long time)
 	while (get_time() - start < time)
 	{
 		usleep(100);
+		if (check_if_die(table))
+			return ;
 	}
 }
 

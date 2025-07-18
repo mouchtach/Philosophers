@@ -6,11 +6,27 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:40:16 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/17 10:16:07 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:26:41 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+// void	check_meals(t_table *table)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	pthread_mutex_lock(&table->mtx->meal);
+// 	while (i < table->nb_philo && table->p[i].count_m < table->nb_meals)
+// 		i++;
+// 	pthread_mutex_unlock(&table->mtx->meal);
+// 	if (i == table->nb_philo)
+// 	{
+// 		pthread_mutex_lock(&table->mtx->end);
+// 		table->end = true;
+// 		pthread_mutex_unlock(&table->mtx->end);
+// 	}
+// }
 
 bool	check(t_table *table)
 {
@@ -18,7 +34,7 @@ bool	check(t_table *table)
 
 	i = 0;
 	pthread_mutex_lock(&table->mtx->meal);
-	while (i < table->nb_philo && table->p[i].count_m == table->nb_meals)
+	while (i < table->nb_philo && table->p[i].count_m >= table->nb_meals)
 		i++;
 	pthread_mutex_unlock(&table->mtx->meal);
 	if (i == table->nb_philo)
@@ -56,7 +72,7 @@ bool	eating(t_philo *philo)
 	if (philo->table->nb_philo == 1)
 	{
 		pthread_mutex_unlock(philo->r_fork);
-		smart_sleep(philo->table->tm_die);
+		smart_sleep(philo->table->tm_die, philo->table);
 		return (false);
 	}
 	pthread_mutex_lock(philo->l_fork);
@@ -66,6 +82,7 @@ bool	eating(t_philo *philo)
 	philo->count_m++;
 	philo->last_tm_eat = get_time();
 	pthread_mutex_unlock(&philo->table->mtx->meal);
+	smart_sleep(philo->table->tm_eat, philo->table);
 	return (true);
 }
 
@@ -75,17 +92,16 @@ void	*routine(void *data)
 
 	philo = (t_philo *)data;
 	if (philo->id % 2 == 0)
-		usleep(1000);
+		smart_sleep(philo->table->tm_eat / 2, philo->table);
 	while (!check_if_die(philo->table))
 	{
 		print_t(philo, "is thinkng");
 		if (!eating(philo))
 			return (NULL);
-		smart_sleep(philo->table->tm_eat);
 		pthread_mutex_unlock(philo->l_fork);
 		pthread_mutex_unlock(philo->r_fork);
 		print_t(philo, "is sleeping");
-		smart_sleep(philo->table->tm_sleep);
+		smart_sleep(philo->table->tm_sleep, philo->table);
 	}
 	return (NULL);
 }
