@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:39:14 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/17 09:51:22 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:54:58 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	parssing(t_table *table, char **av)
 	if (av[5])
 	{
 		table->nb_meals = ft_atoi(av[5]);
-		if (table->nb_meals == -1)
+		if (table->nb_meals <= 0)
 			return (false);
 	}
 	else
