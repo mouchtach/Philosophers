@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 21:23:53 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/19 21:32:59 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/19 23:12:17 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ bool init_table(t_table *table)
     table->forks = sem_open("/forks", O_CREAT, 0644, table->nb_philo);
     table->print = sem_open("/print", O_CREAT, 0644, 1);
     table->death = sem_open("/death", O_CREAT, 0644, 1);
-    if (table->forks == SEM_FAILED || table->print == SEM_FAILED || table->death == SEM_FAILED) {
+    if (table->forks == SEM_FAILED || table->print == SEM_FAILED || table->death == SEM_FAILED)
+	{
         printf(SEMA_ERROR);
         return false;
     }
     table->pid = malloc(sizeof(pid_t) * table->nb_philo);
-    if (!table->pid) {
+    if (!table->pid)
+{
         printf(MALLOC_ERROR);
         return false;
     }

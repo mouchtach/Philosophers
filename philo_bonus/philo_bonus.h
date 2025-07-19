@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 17:17:48 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/19 21:32:06 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/19 23:36:19 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define ARG_COUNT "Error: Invalid number of arguments\n"
 # define SEMA_ERROR "Error: Semaphore failed\n"
 # define MALLOC_ERROR "Error: Malloc failed\n"
+# define FINISHED "All philosophers have eaten enough meals\n"
 
 // Philosopher actions
 # define FORK "has taken a fork\n"
@@ -42,12 +43,15 @@
 # define DIED "died\n"
 
 typedef struct s_table {
+	int     id;
     int     nb_philo;
     long    tm_die;
     long    tm_eat;
     long    tm_sleep;
     int     nb_meals;
     long    start_time;
+	long	last_meal;
+	int     meals_eaten;
     pid_t   *pid;
     sem_t   *forks;
     sem_t   *print;

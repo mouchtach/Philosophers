@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 15:59:19 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/19 21:36:11 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/19 23:36:50 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,35 @@ void print_action(int id, t_table *table, char *action)
     printf("%ld %d %s", get_time() - table->start_time, id, action);
     sem_post(table->print);
 }
+void *monitor_death(void *arg)
+{
+    t_table *table = (t_table *)arg;
+    while (1)
+    {
+		if (table->nb_meals > 0 && table->meals_eaten >= table->nb_meals)
+        {
+            // sem_wait(table->print);
+            // printf("%ld %d %s", get_time() - table->start_time, table->id, FINISHED);
+            exit(1);
+        }
+        if (get_time() - table->last_meal > table->tm_die)
+        {
+			sem_wait(table->print);
+			printf("%ld %d %s", get_time() - table->start_time, table->id, DIED);
+            exit(1);
+        }
+        usleep(100);
+    }
+    return NULL;
+}
 
 void philosopher(int id, t_table *table)
 {
-    int meals = 0;
-    long last_meal = get_time();
-
+    table->meals_eaten = 0;
+    table->last_meal = get_time();
+	table->id = id;
+	pthread_t tread;
+	pthread_create(&tread, NULL, monitor_death, (void *)table);
     while (1)
 	{
         print_action(id, table, THINK);
@@ -32,21 +55,13 @@ void philosopher(int id, t_table *table)
         sem_wait(table->forks);
         print_action(id, table, FORK);
         print_action(id, table, EAT);
-        last_meal = get_time();
+        table->last_meal = get_time();
         usleep(table->tm_eat * 1000);
-        meals++;
+        table->meals_eaten++;
         sem_post(table->forks);
         sem_post(table->forks);
-        if (table->nb_meals != -1 && meals >= table->nb_meals)
-            break;
         print_action(id, table, SLEEP);
         usleep(table->tm_sleep * 1000);
-        if (get_time() - last_meal > table->tm_die)
-		{
-            sem_wait(table->print);
-            printf("%ld %d %s", get_time() - table->start_time, id, DIED);
-            exit(1);
-        }
     }
     exit(0);
 }
