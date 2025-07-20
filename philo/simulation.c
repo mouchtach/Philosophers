@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:40:16 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/18 16:26:41 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:16:00 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,15 @@ bool	check(t_table *table)
 	int	i;
 
 	i = 0;
-	pthread_mutex_lock(&table->mtx->meal);
-	while (i < table->nb_philo && table->p[i].count_m >= table->nb_meals)
-		i++;
-	pthread_mutex_unlock(&table->mtx->meal);
-	if (i == table->nb_philo)
-		return (die(table));
+	if (table->nb_meals != -1)
+	{
+		pthread_mutex_lock(&table->mtx->meal);
+		while (i < table->nb_philo && table->p[i].count_m >= table->nb_meals)
+			i++;
+		pthread_mutex_unlock(&table->mtx->meal);
+		if (i == table->nb_philo)
+			return (die(table));
+	}
 	i = 0;
 	while (i < table->nb_philo)
 	{

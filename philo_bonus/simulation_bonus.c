@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 15:59:19 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/19 23:36:50 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/20 15:22:27 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@ void *monitor_death(void *arg)
     while (1)
     {
 		if (table->nb_meals > 0 && table->meals_eaten >= table->nb_meals)
-        {
-            // sem_wait(table->print);
-            // printf("%ld %d %s", get_time() - table->start_time, table->id, FINISHED);
-            exit(1);
-        }
+            exit(0);
         if (get_time() - table->last_meal > table->tm_die)
         {
 			sem_wait(table->print);
@@ -85,7 +81,8 @@ bool start_simulation(t_table *table)
         }
         i++;
     }
-    while (waitpid(-1, &status, 0) > 0) {
+    while (waitpid(-1, &status, 0) > 0)
+    {
         if (WIFEXITED(status) && WEXITSTATUS(status) == 1) {
             kill_philos(table, table->nb_philo);
             break;
