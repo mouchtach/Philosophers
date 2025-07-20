@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:31:15 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/18 16:56:05 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:06:02 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define NOT_DIGIT "eroor : NOT_DIGIT\n"
 # define TIME_ERROR "eroor : TIME_ERROR\n"
 // message philos
-# define FORK "has taking a fork;\n"
+# define FORK "has taken a fork\n"
 # define EAT "is eating\n"
 # define SLEEP "is sleeping\n"
 # define THINK "is thinking\n"

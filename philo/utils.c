@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 10:14:52 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/18 15:47:01 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:05:55 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_t(t_philo *philo, char *str)
 {
 	pthread_mutex_lock(&philo->table->mtx->print);
 	if (!check_if_die(philo->table))
-		printf("%ld %d %s\n", get_time() - philo->time_stat, philo->id, str);
+		printf("%ld %d %s", get_time() - philo->time_stat, philo->id, str);
 	pthread_mutex_unlock(&philo->table->mtx->print);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:40:16 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/20 17:52:53 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:05:28 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	check(t_table *table)
 	{
 		if (get_time() - table->p[i].last_tm_eat >= table->tm_die)
 		{
-			print_t(&table->p[i], "died");
+			print_t(&table->p[i], DIED);
 			return (die(table));
 		}
 		i++;
@@ -55,7 +55,7 @@ void	*monitor(void *data)
 bool	eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
-	print_t(philo, "has taken a fork");
+	print_t(philo, FORK);
 	if (philo->table->nb_philo == 1)
 	{
 		pthread_mutex_unlock(philo->r_fork);
@@ -63,8 +63,8 @@ bool	eating(t_philo *philo)
 		return (false);
 	}
 	pthread_mutex_lock(philo->l_fork);
-	print_t(philo, "has taken a fork");
-	print_t(philo, "is eating");
+	print_t(philo, FORK);
+	print_t(philo, EAT);
 	pthread_mutex_lock(&philo->table->mtx->meal);
 	philo->count_m++;
 	philo->last_tm_eat = get_time();
@@ -82,12 +82,12 @@ void	*routine(void *data)
 		smart_sleep(philo->table->tm_eat / 2, philo->table);
 	while (!check_if_die(philo->table))
 	{
-		print_t(philo, "is thinkng");
+		print_t(philo, THINK);
 		if (!eating(philo))
 			return (NULL);
 		pthread_mutex_unlock(philo->l_fork);
 		pthread_mutex_unlock(philo->r_fork);
-		print_t(philo, "is sleeping");
+		print_t(philo, SLEEP);
 		smart_sleep(philo->table->tm_sleep, philo->table);
 	}
 	return (NULL);
