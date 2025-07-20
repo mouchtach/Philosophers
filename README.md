@@ -62,5 +62,3 @@ philo_bonus/  # Bonus version with processes
 ```
 
 ---
-
-Let me know if you'd like this in Arabic or French too.
