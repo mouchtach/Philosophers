@@ -6,10 +6,9 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 17:17:48 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/19 23:36:19 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/20 17:25:41 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PHILO_BONUS_H
 # define PHILO_BONUS_H
@@ -43,29 +42,29 @@
 # define DIED "died\n"
 
 typedef struct s_table {
-	int     id;
-    int     nb_philo;
-    long    tm_die;
-    long    tm_eat;
-    long    tm_sleep;
-    int     nb_meals;
-    long    start_time;
+	int		id;
+	int		nb_philo;
+	long	tm_die;
+	long	tm_eat;
+	long	tm_sleep;
+	int		nb_meals;
+	long	start_time;
 	long	last_meal;
-	int     meals_eaten;
-    pid_t   *pid;
-    sem_t   *forks;
-    sem_t   *print;
-    sem_t   *death;
-} t_table;
+	int		meals_eaten;
+	pid_t	*pid;
+	sem_t	*forks;
+	sem_t	*print;
+	sem_t	*death;
+}		t_table;
 
 // Function prototypes
-long    get_time(void);
-bool    parsing(t_table *, char **);
-bool    init_table(t_table *table);
-void    cleanup(t_table *table);
-void    kill_philos(t_table *table, int count);
-void    print_action(int id, t_table *table, char *action);
-void    philosopher(int id, t_table *table);
-bool    start_simulation(t_table *table);
+long	get_time(void);
+bool	parsing(t_table *table, char **av);
+bool	init_table(t_table *table);
+void	cleanup(t_table *table);
+void	kill_philos(t_table *table, int count);
+void	print_action(int id, t_table *table, char *action);
+void	philosopher(int id, t_table *table);
+bool	start_simulation(t_table *table);
 
 #endif
