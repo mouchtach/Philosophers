@@ -3,7 +3,6 @@
 
 
 This project simulates the **Dining Philosophers Problem** using C with threads (mandatory) and processes (bonus).
-
 ---
 
 ### ✅ Features
@@ -27,8 +26,9 @@ make
 #### Run Example
 
 ```bash
-./philo 5 800 200 200
+./philo 4 310 100 200
 ```
+![philo output gif](philo.gif)
 
 #### Arguments
 
