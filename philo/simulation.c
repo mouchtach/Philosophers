@@ -6,27 +6,11 @@
 /*   By: ymouchta <ymouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:40:16 by ymouchta          #+#    #+#             */
-/*   Updated: 2025/07/18 17:16:00 by ymouchta         ###   ########.fr       */
+/*   Updated: 2025/07/20 17:52:53 by ymouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-// void	check_meals(t_table *table)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	pthread_mutex_lock(&table->mtx->meal);
-// 	while (i < table->nb_philo && table->p[i].count_m < table->nb_meals)
-// 		i++;
-// 	pthread_mutex_unlock(&table->mtx->meal);
-// 	if (i == table->nb_philo)
-// 	{
-// 		pthread_mutex_lock(&table->mtx->end);
-// 		table->end = true;
-// 		pthread_mutex_unlock(&table->mtx->end);
-// 	}
-// }
 
 bool	check(t_table *table)
 {
